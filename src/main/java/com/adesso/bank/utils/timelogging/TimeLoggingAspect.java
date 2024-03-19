@@ -1,6 +1,7 @@
 package com.adesso.bank.utils.timelogging;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
@@ -41,21 +42,20 @@ public class TimeLoggingAspect {
     public Object repositoryExecution(ProceedingJoinPoint joinPoint) throws Throwable {
         return timeLoggingWorker.trackTime(joinPoint,timeLoggingConfig.getRepository(), "repositoryExecution");
     }
-
-
-
     @Around("com.adesso.bank.utils.timelogging.CommonJoinPontConfig.dataLayerExecution()")
     public Object dataLayerExecution(ProceedingJoinPoint joinPoint) throws Throwable {
         return timeLoggingWorker.trackTime(joinPoint,timeLoggingConfig.getData(), "dataLayerExecution");
     }
-
-
     @Around("com.adesso.bank.utils.timelogging.CommonJoinPontConfig.trackTimeAnnotation()")
     public Object trackTimeAnnotation(ProceedingJoinPoint joinPoint) throws Throwable {
         return timeLoggingWorker.trackTime(joinPoint,timeLoggingConfig.getTracktime(), "trackTimeAnnotation");
     }
 
 
+    @AfterThrowing("com.adesso.bank.utils.timelogging.CommonJoinPontConfig.dataLayerExecution()")
+    public void printLogger() {
+        timeLoggingWorker.printLogger();
+    }
 
 
 }

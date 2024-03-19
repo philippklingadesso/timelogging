@@ -21,7 +21,6 @@ public class BasicTestDefinitions {
         logger.setLevel(loggingLevel);
         logger.addAppender(memoryAppender);
         memoryAppender.start();
-
     }
 
     public static void stopMemoryAppender() {

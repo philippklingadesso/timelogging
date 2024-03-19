@@ -15,13 +15,8 @@ public class TimeLoggingConfig {
     private Boolean data = true;
     private Boolean tracktime = true;
     private Boolean jpaExecution = true;
-
-
-
-
     public TimeLoggingConfig() {
     }
-
     public Boolean getActive() {
         return active;
     }

@@ -19,4 +19,12 @@ public class TestService {
         return testRepository.retrieveOne();
     }
 
+    public String retrieveOneAndThrow() throws RuntimeException {
+        return testRepository.retrieveOneAndThrow();
+    }
+
+    public String retrieveOneAndWait() {
+        return testRepository.retrieveOneAndWait();
+    }
+
 }

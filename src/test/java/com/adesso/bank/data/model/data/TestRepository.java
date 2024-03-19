@@ -29,4 +29,30 @@ public class TestRepository {
         return "data1";
     }
 
+    public String retrieveOneAndThrow() throws RuntimeException {
+        LOGGER.info("read 'One' from database");
+//        try {
+            for (int i = 0; i < 1000; i++) {
+                if (i == 10) {
+                    throw new RuntimeException();
+                }
+                //do nothing, just use a bit of time
+            }
+//        } catch (RuntimeException ex) {
+//            do nothing
+//        }
+        return "data1";
+    }
+
+    public String retrieveOneAndWait() {
+        LOGGER.info("read 'One' from database for a long time");
+        try {
+            Thread.sleep(5 * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "data1";
+    }
+
 }
